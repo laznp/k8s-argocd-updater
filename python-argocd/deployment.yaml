@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: python-argocd
+  name: python-argocd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-argocd
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: python-argocd
+    spec:
+      containers:
+      - image: laznp/python-argocd:v1.0
+        name: python-argocd
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5000
+            name: python-argocd

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: python-argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/laznp/k8s-argocd-updater.git
+    targetRevision: HEAD
+    path: python-argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: python-argocd
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
