@@ -3,4 +3,4 @@ resources:
 - service.yaml
 images:
 - name: laznp/python-argocd
-  newTag: v1.2
+  newTag: v1.3
