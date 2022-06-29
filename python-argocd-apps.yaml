@@ -2,10 +2,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: python-argocd
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: "laznp/python-argocd:v1.x"
+    argocd-image-updater.argoproj.io/write-back-method: "git:secret:argocd/git-creds"
+    argocd-image-updater.argoproj.io/git-branch: main
+    argocd-image-updater.argoproj.io/write-back-target: "kustomization:/python-argocd"
 spec:
   project: default
   source:
-    repoURL: https://github.com/laznp/k8s-argocd-updater.git
+    repoURL: git@github.com:laznp/k8s-argocd-updater.git
     targetRevision: HEAD
     path: python-argocd
   destination:
